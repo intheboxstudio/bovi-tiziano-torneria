@@ -42,18 +42,39 @@ IMAGES = {
     "P1010852.JPG": ("strumento-blocchetti.jpg", 1000, 80),
     "P1010855.JPG": ("strumento-micrometro-2.jpg", 1000, 80),
     "P1010854.JPG": ("strumento-comparatore.jpg", 1000, 80),
-    "P1010856.JPG": ("progettazione-cad-1.jpg", 1000, 78),
+    "P1010857.JPG": ("progettazione-cad-1.jpg", 1000, 78),
 
-    # Galleria pezzi lavorati
+    # Galleria pezzi lavorati (colori corretti: vedi COLOR_CORRECT sotto)
     "P1010858.JPG": ("pezzo-01.jpg", 900, 80),
     "P1010861.JPG": ("pezzo-02.jpg", 900, 80),
     "P1010864.JPG": ("pezzo-03.jpg", 900, 80),
     "P1010865.JPG": ("pezzo-04.jpg", 900, 80),
-    "P1010868.JPG": ("pezzo-05.jpg", 900, 80),
+    "P1010877.JPG": ("pezzo-05.jpg", 900, 80),
     "P1010872.JPG": ("pezzo-06.jpg", 900, 80),
     "P1010876.JPG": ("pezzo-07.jpg", 900, 80),
     "P1010871.JPG": ("pezzo-08.jpg", 900, 80),
 }
+
+# Le foto originali sono scattate sotto luce alogena/tungsteno su un tavolo di
+# legno: la dominante calda fa sembrare "ottone" anche i pezzi in acciaio.
+# Per i pezzi della galleria correggiamo il bilanciamento del bianco in LAB,
+# comprimendo gli assi colore (a = verde-rosso, b = blu-giallo) verso il
+# neutro, cosi' i pezzi in acciaio/inox tornano grigi e solo i pezzi
+# realmente in ottone restano dorati (ma meno aranciati).
+COLOR_CORRECT = {
+    "pezzo-01.jpg", "pezzo-02.jpg", "pezzo-03.jpg", "pezzo-04.jpg",
+    "pezzo-05.jpg", "pezzo-06.jpg", "pezzo-07.jpg", "pezzo-08.jpg",
+}
+COLOR_CORRECT_A_FACTOR = 0.65  # 1.0 = nessuna modifica, 0 = neutralizza del tutto
+COLOR_CORRECT_B_FACTOR = 0.45
+
+
+def white_balance_neutralize(img, a_factor=COLOR_CORRECT_A_FACTOR, b_factor=COLOR_CORRECT_B_FACTOR):
+    lab = img.convert("LAB")
+    L, A, B = lab.split()
+    A = A.point(lambda v: int(128 + (v - 128) * a_factor))
+    B = B.point(lambda v: int(128 + (v - 128) * b_factor))
+    return Image.merge("LAB", (L, A, B)).convert("RGB")
 
 
 def optimize():
@@ -74,6 +95,9 @@ def optimize():
             ratio = max_w / img.width
             new_size = (max_w, int(img.height * ratio))
             img = img.resize(new_size, Image.LANCZOS)
+
+        if out_name in COLOR_CORRECT:
+            img = white_balance_neutralize(img)
 
         img.save(out_path, "JPEG", quality=quality, optimize=True, progressive=True)
 
