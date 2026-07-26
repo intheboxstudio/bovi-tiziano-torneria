@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+_tmp/
+
+# Foto/video originali del cliente: pesano centinaia di MB e non servono nel
+# repo, il sito usa solo le versioni ottimizzate in images/. Restano solo
+# in locale come archivio sorgente per generare nuove immagini web.
+assets/
