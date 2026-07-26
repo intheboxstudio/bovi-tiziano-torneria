@@ -27,7 +27,7 @@ IMAGES = {
     "P1010881.JPG": ("chi-siamo-officina.jpg", 1400, 80),
 
     # Macchinari
-    "P1010828.JPG": ("macchinario-cnc-1.jpg", 1200, 78),
+    "P1010830.JPG": ("macchinario-cnc-1.jpg", 1200, 78),
     "P1010831.JPG": ("macchinario-cnc-controllo.jpg", 1000, 78),
     "P1010838.JPG": ("macchinario-tornio-parallelo-1.jpg", 1200, 78),
     "P1010841.JPG": ("macchinario-tornio-parallelo-2.jpg", 1200, 78),
@@ -41,6 +41,7 @@ IMAGES = {
     "P1010850.JPG": ("strumento-micrometro-1.jpg", 1000, 80),
     "P1010852.JPG": ("strumento-blocchetti.jpg", 1000, 80),
     "P1010855.JPG": ("strumento-micrometro-2.jpg", 1000, 80),
+    "P1010854.JPG": ("strumento-comparatore.jpg", 1000, 80),
     "P1010856.JPG": ("progettazione-cad-1.jpg", 1000, 78),
 
     # Galleria pezzi lavorati
@@ -51,7 +52,7 @@ IMAGES = {
     "P1010868.JPG": ("pezzo-05.jpg", 900, 80),
     "P1010872.JPG": ("pezzo-06.jpg", 900, 80),
     "P1010876.JPG": ("pezzo-07.jpg", 900, 80),
-    "P1010878.JPG": ("pezzo-08.jpg", 900, 80),
+    "P1010871.JPG": ("pezzo-08.jpg", 900, 80),
 }
 
 
