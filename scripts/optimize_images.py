@@ -24,7 +24,10 @@ OUT_DIR = "images"
 # (sorgente in assets/, nome output in images/, larghezza max px, qualità JPEG 1-95)
 IMAGES = [
     # Hero / sezioni principali
-    ("P1010882.JPG", "hero-officina.jpg", 1920, 80),
+    # La panoramica del capannone (P1010882) e' stata scartata dal cliente: era
+    # una stanza vuota, poco leggibile e senza soggetto. Ora l'hero e' il carrello
+    # portautensili rossi, che si capisce a colpo d'occhio anche tagliato in 16:9.
+    ("P1010846.JPG", "hero-officina.jpg", 1920, 82),
     ("P1010881.JPG", "chi-siamo-officina.jpg", 1400, 80),
     # Banda "L'officina in azione" (ha sostituito il video)
     ("P1010847.JPG", "officina-in-azione.jpg", 1600, 80),
@@ -35,8 +38,9 @@ IMAGES = [
     ("P1010838.JPG", "macchinario-tornio-parallelo-1.jpg", 1200, 78),
     ("P1010841.JPG", "macchinario-tornio-parallelo-2.jpg", 1200, 78),
     ("P1010843.JPG", "macchinario-trapano-colonna.jpg", 1200, 78),
-    ("P1010846.JPG", "macchinario-utensili-1.jpg", 1200, 78),
-    ("P1010847.JPG", "macchinario-utensili-2.jpg", 1200, 78),
+    # P1010846 e P1010847 sono ora hero e "officina in azione": per la griglia
+    # macchinari serve una foto diversa, altrimenti la stessa immagine compare due volte.
+    ("P1010835.JPG", "macchinario-utensili-1.jpg", 1200, 78),
 
     # Strumenti di precisione
     ("P1010850.JPG", "strumento-micrometro-1.jpg", 1000, 80),
@@ -73,7 +77,9 @@ COLOR_CORRECT_B_FACTOR = 0.45
 # la foto, dell'officina non si vede quasi nulla.
 # nome output -> (luminosita', contrasto, saturazione); 1.0 = invariato
 BRIGHTEN = {
-    "hero-officina.jpg": (1.20, 1.06, 1.06),
+    # L'hero attuale (portautensili) e' gia' ben illuminato: solo un filo di
+    # contrasto e colore, alzare la luminosita' lo brucerebbe.
+    "hero-officina.jpg": (1.02, 1.08, 1.06),
     "chi-siamo-officina.jpg": (1.10, 1.04, 1.03),
     "officina-in-azione.jpg": (1.08, 1.04, 1.03),
 }

@@ -268,6 +268,9 @@ img { max-width: 100%; display: block; }
   gap: 1rem;
   margin: 2rem 0 3rem;
 }
+/* I bottoni hanno gia' il loro sfondo pieno: l'ombra ereditata da .hero-content
+   sporcherebbe il testo scuro del CTA arancione. */
+.hero-actions .btn { text-shadow: none; }
 .hero-stats {
   display: flex;
   gap: 2.5rem;
