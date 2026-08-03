@@ -227,12 +227,15 @@ img { max-width: 100%; display: block; }
   background-position: center;
   transform: scale(1.05);
 }
+/* Velo scuro tenuto volutamente leggero: la foto dell'officina deve restare
+   riconoscibile. La leggibilita' del testo e' garantita dal gradiente laterale
+   (piu' denso solo dietro al blocco di testo) e dal text-shadow su .hero-content. */
 .hero-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(100deg, rgba(10,11,13,0.94) 10%, rgba(10,11,13,0.75) 45%, rgba(10,11,13,0.45) 100%),
-    linear-gradient(0deg, rgba(10,11,13,0.9), rgba(10,11,13,0.35) 40%);
+    linear-gradient(100deg, rgba(10,11,13,0.85) 0%, rgba(10,11,13,0.6) 42%, rgba(10,11,13,0.15) 100%),
+    linear-gradient(0deg, rgba(10,11,13,0.75), rgba(10,11,13,0.05) 45%);
 }
 .hero-content {
   position: relative;
@@ -240,6 +243,7 @@ img { max-width: 100%; display: block; }
   padding-top: 6rem;
   padding-bottom: 4rem;
   max-width: 780px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
 }
 .eyebrow {
   color: var(--color-accent-2);
@@ -355,17 +359,17 @@ img { max-width: 100%; display: block; }
 .card h3 { font-size: 1.15rem; margin-bottom: 0.5em; }
 .card p { color: var(--color-text-muted); font-size: 0.95rem; margin: 0; }
 
-/* ---------- Video officina ---------- */
-.video-wrap {
+/* ---------- Officina in azione (banda immagine) ---------- */
+.media-wrap {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
   border: 1px solid var(--color-border);
   line-height: 0;
 }
-.video-wrap video {
+.media-wrap img {
   width: 100%;
-  max-height: 640px;
+  max-height: 560px;
   object-fit: cover;
   background: #000;
 }
@@ -608,6 +612,14 @@ img { max-width: 100%; display: block; }
 
   .split { grid-template-columns: 1fr; }
   .split-media { order: -1; }
+
+  /* Su schermo stretto il testo copre tutta la larghezza: serve piu' velo
+     per mantenere il contrasto. */
+  .hero-overlay {
+    background:
+      linear-gradient(100deg, rgba(10,11,13,0.85) 0%, rgba(10,11,13,0.7) 60%, rgba(10,11,13,0.5) 100%),
+      linear-gradient(0deg, rgba(10,11,13,0.8), rgba(10,11,13,0.2) 50%);
+  }
 }
 
 @media (max-width: 640px) {

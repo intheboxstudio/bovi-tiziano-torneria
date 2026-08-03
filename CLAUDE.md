@@ -25,16 +25,24 @@ testi chiari, contrasti alti, font leggibili, niente effetti grafici eccessivi, 
 
 ## Cosa fa l'azienda
 
+Dati aggiornati dal cliente il 2026-08-03: sostituiscono le indicazioni del brief
+originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
+"ricambi per etichettatrici").
+
 **Lavorazioni:**
-- Fresatura CNC
-- Prototipi in alluminio, ottone, acciaio inox (316, 204, 303, 320)
-- Piccole serie: da 1 pezzo a 100 pezzi
-- Ricambi per etichettatrici
+- Fresatura CNC a 3 assi, con controllo numerico gestito da CAD/CAM
+- Prototipi in alluminio, ottone, diversi tipi di acciaio e altri materiali
+  (in generale: "vari acciai e inox", materie prime "acciaio inox serie 3 e altri")
+- Piccole serie: da 1 pezzo a 500 pezzi
+- Ricambi per il settore packaging (termine più ampio, voluto dal cliente al posto
+  del solo "etichettatrici")
+- Preventivi rapidi, anche in 24 ore, su disegni PDF / DWG / DXF / STEP
+- NON offriamo sopralluoghi: era sul sito per errore, il cliente l'ha fatto togliere
 
 **Macchinari:**
 - CNC a 3 assi (fresatura a 3 assi)
-- Fresa a controllo numerico MYNX 530
-- Tornio parallelo
+- Fresa a controllo numerico Daewoo MYNX 530 — corse 800 x 500 x 500 mm
+- Tornio parallelo — 225 x 1500 mm
 - Strozzatrice per cave interne
 - Torni tradizionali
 - Trapani a colonna
@@ -76,6 +84,18 @@ testi chiari, contrasti alti, font leggibili, niente effetti grafici eccessivi, 
   generare uno sfondo hero più "d'effetto" con l'IA generativa di Google. Claude Code non ha
   accesso diretto a quel modello in questa sessione: il procedimento va fatto manualmente
   da Google AI Studio o dall'app Gemini. I passi sono descritti in README.md.
+- **Niente video nella sezione "L'officina in azione"**: sono stati provati due video
+  (uno reale dell'officina, uno generato con l'IA) e il cliente ha bocciato entrambi.
+  La sezione ora usa una foto fissa (`images/officina-in-azione.jpg`). Non reintrodurre
+  un video senza che il cliente ne fornisca uno che approva. Il file
+  `videos/tornio-lavorazione.mp4` resta nel repo ma non è più referenziato: si può
+  cancellare quando la scelta è definitiva.
+- **Hero: velo scuro leggero + foto schiarita**. Il cliente ha chiesto esplicitamente che
+  la foto di sfondo si veda di più. Due leve, da tenere in equilibrio: il gradiente in
+  `.hero-overlay` (css/style.css, più leggero su desktop, più denso sotto 860px dove il
+  testo occupa tutta la larghezza) e il dizionario `BRIGHTEN` in
+  `scripts/optimize_images.py`, che schiarisce le foto d'ambiente scattate in controluce.
+  Se si scurisce ancora l'overlay si torna al problema iniziale.
 
 ## Convenzioni di stile
 
