@@ -19,6 +19,9 @@ testi chiari, contrasti alti, font leggibili, niente effetti grafici eccessivi, 
 - **P.IVA**: 02287680207
 - **Telefono**: 0376 47593
 - **Email di contatto (deve ricevere il form)**: torbovi@virgilio.it
+- **Dominio**: torneriabovi.it (acquistato su Register.it), il sito va servito su
+  **www.torneriabovi.it** — vedi il file `CNAME` nella root e README.md sezione 5
+- **Repository GitHub**: https://github.com/intheboxstudio/bovi-tiziano-torneria
 - **Anno di fondazione**: nel brief originale è scritto "1064", che è quasi certamente un refuso
   per **1964**. È stato usato **1964** nei testi del sito. Se il cliente conferma un anno
   diverso, aggiornare ovunque compaia (footer, sezione Chi Siamo, eventuale JSON-LD).
@@ -120,8 +123,19 @@ originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
   (privacy, GDPR — form contatti raccoglie dati personali, va citata una nota privacy
   minima già presente nel form).
 
+## Pubblicazione
+
+- Hosting: **GitHub Pages**, branch `main`, cartella `/ (root)`. Ogni `git push` aggiorna
+  il sito online in circa un minuto.
+- Dominio personalizzato: il file **`CNAME`** (root del repo) contiene
+  `www.torneriabovi.it`. Non cancellarlo e non rinominarlo: GitHub Pages lo legge a ogni
+  deploy e senza quel file il dominio personalizzato viene disattivato.
+- DNS su Register.it: CNAME `www` → `intheboxstudio.github.io` + 4 record A su `@` verso
+  gli IP GitHub Pages `185.199.108-111.153`. Dettagli in README.md sezione 5.
+
 ## Prossimi passi noti (non ancora fatti)
 
+- Attivare GitHub Pages (Settings → Pages) e inserire i record DNS su Register.it.
 - Creare l'account Web3Forms e inserire la vera access key in `index.html`
   (cercare `WEB3FORMS_ACCESS_KEY_QUI` nel file).
 - Migliorare/generare immagini con Nano Banana (vedi README.md) e sostituire i file in
