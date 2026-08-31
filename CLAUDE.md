@@ -62,7 +62,8 @@ originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
 ├── assets/                ← FOTO ORIGINALI del cliente (non toccare, non pubblicare così come sono: 6-9MB l'una)
 ├── images/                ← foto ottimizzate per il web, generate da assets/ con scripts/optimize_images.py
 └── scripts/
-    └── optimize_images.py ← script Python (Pillow) per ridimensionare/comprimere le foto
+    ├── optimize_images.py ← script Python (Pillow) per ridimensionare/comprimere le foto
+    └── make_og_image.py   ← genera images/og-cover.jpg, l'anteprima dei link condivisi
 ```
 
 ## Decisioni tecniche e perché
@@ -93,6 +94,13 @@ originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
   un video senza che il cliente ne fornisca uno che approva. Il file
   `videos/tornio-lavorazione.mp4` resta nel repo ma non è più referenziato: si può
   cancellare quando la scelta è definitiva.
+- **Anteprima link (Open Graph)**: quando il sito viene condiviso su WhatsApp o sui social
+  deve comparire un'immagine di anteprima. I meta `og:*` sono nel `<head>` di `index.html`
+  e puntano a `https://www.torneriabovi.it/images/og-cover.jpg` (URL assoluto: obbligatorio,
+  i crawler non risolvono i percorsi relativi). L'immagine e' 1200x630 e si rigenera con
+  `python scripts/make_og_image.py`. Se si cambia la foto di partenza o i testi, rilanciare
+  lo script. WhatsApp tiene l'anteprima in cache per giorni: per verificare una modifica
+  conviene condividere l'URL con un parametro finto (es. `?2`).
 - **Hero: velo scuro leggero + foto schiarita**. Il cliente ha chiesto esplicitamente che
   la foto di sfondo si veda di più. Due leve, da tenere in equilibrio: il gradiente in
   `.hero-overlay` (css/style.css, più leggero su desktop, più denso sotto 860px dove il

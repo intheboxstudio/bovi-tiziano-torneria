@@ -203,5 +203,6 @@ js/main.js          menu mobile, animazioni scroll, invio form
 images/             foto ottimizzate usate dal sito
 assets/             foto originali del cliente (NON usate direttamente nel sito: troppo pesanti)
 scripts/optimize_images.py  script per generare images/ da assets/
+scripts/make_og_image.py    genera images/og-cover.jpg (anteprima dei link condivisi)
 CNAME               dominio personalizzato per GitHub Pages (www.torneriabovi.it)
 ```
