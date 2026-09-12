@@ -22,6 +22,9 @@ testi chiari, contrasti alti, font leggibili, niente effetti grafici eccessivi, 
 - **Dominio**: torneriabovi.it (acquistato su Register.it), il sito va servito su
   **www.torneriabovi.it** — vedi il file `CNAME` nella root e README.md sezione 5
 - **Repository GitHub**: https://github.com/intheboxstudio/bovi-tiziano-torneria
+- **Orari di apertura** (confermati dal cliente il 2026-09-12): lunedì-venerdì
+  8.00-12.00 e 14.00-18.00, sabato e domenica chiuso. Sono pubblicati sul sito
+  (sezione Contatti + footer) e nel JSON-LD `openingHoursSpecification`.
 - **Anno di fondazione**: nel brief originale è scritto "1064", che è quasi certamente un refuso
   per **1964**. È stato usato **1964** nei testi del sito. Se il cliente conferma un anno
   diverso, aggiornare ovunque compaia (footer, sezione Chi Siamo, eventuale JSON-LD).
@@ -56,7 +59,12 @@ originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
 /
 ├── CLAUDE.md              ← questo file
 ├── README.md              ← istruzioni rapide (deploy, form, immagini)
-├── index.html             ← sito one-page (Home, Chi Siamo, Lavorazioni, Macchinari, Galleria, Contatti)
+├── index.html             ← home one-page (Home, Chi Siamo, Lavorazioni, Macchinari, Galleria, FAQ, Contatti)
+├── lavorazioni-meccaniche-mantova.html   ┐
+├── fresatura-cnc-mantova.html            ├ pagine di approfondimento (SEO) — vedi sotto
+├── tornitura-conto-terzi-mantova.html    ┘
+├── sitemap.xml            ← elenco URL per Google: va aggiornato a ogni pagina nuova
+├── robots.txt             ← apre tutto ai motori e indica la sitemap
 ├── css/style.css
 ├── js/main.js             ← menu mobile, scroll reveal, invio form (Web3Forms)
 ├── assets/                ← FOTO ORIGINALI del cliente (non toccare, non pubblicare così come sono: 6-9MB l'una)
@@ -108,6 +116,23 @@ originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
   `scripts/optimize_images.py`, che schiarisce le foto d'ambiente scattate in controluce.
   Se si scurisce ancora l'overlay si torna al problema iniziale.
 
+- **Pagine di approfondimento (non è più solo one-page)**. La home da sola non può
+  posizionarsi su cinque ricerche diverse: per le query più contese servono pagine con un
+  testo lungo e specifico. Da qui `lavorazioni-meccaniche-mantova.html`,
+  `fresatura-cnc-mantova.html`, `tornitura-conto-terzi-mantova.html`. La home resta
+  one-page con le ancore; queste tre sono pagine vere, linkate dalle schede della sezione
+  Lavorazioni e dall'elenco nel footer (presente su tutti i file).
+  **Attenzione:** header, footer e modulo contatti sono **duplicati in 4 file HTML**.
+  Non c'è build step, quindi una modifica al menu o al footer va replicata a mano su
+  `index.html` e sulle tre pagine. Le pagine sono state generate una volta con uno script
+  usa-e-getta, ma da ora sono file sorgente normali: si modificano a mano.
+- **Dati strutturati (JSON-LD)**. La scheda azienda completa (`LocalBusiness`, con
+  indirizzo, orari, P.IVA, catalogo lavorazioni) sta **solo** nella home, insieme a
+  `WebSite` e `FAQPage`. Ogni pagina di approfondimento ha invece `WebPage` +
+  `BreadcrumbList` + `Service` + un `FAQPage` con domande diverse dalle altre. Se si
+  cambia un dato aziendale (telefono, indirizzo, orari) va cambiato **anche** nel blocco
+  `AZIENDA` ripetuto in testa alle tre pagine, oltre che nella home.
+
 ## Convenzioni di stile
 
 - Testi in italiano, tono diretto e concreto (no marketing-speak vago).
@@ -124,8 +149,6 @@ originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
 
 - Non inventare orari di apertura, certificazioni (es. ISO) o altri dati non forniti dal
   cliente: se mancano, lasciare un placeholder chiaramente segnalato o chiedere.
-  Attualmente non abbiamo indicato orari di apertura sul sito: chiedere a Tiziano se
-  vuole aggiungerli.
 - Non pubblicare le foto originali di `assets/` così come sono (troppo pesanti).
 - Non aggiungere tracker/analytics di terze parti senza chiederlo esplicitamente
   (privacy, GDPR — form contatti raccoglie dati personali, va citata una nota privacy
@@ -141,13 +164,29 @@ originale (che parlava di "acciaio inox 316/204/303/320", "1-100 pezzi" e
 - DNS su Register.it: CNAME `www` → `intheboxstudio.github.io` + 4 record A su `@` verso
   gli IP GitHub Pages `185.199.108-111.153`. Dettagli in README.md sezione 5.
 
+## Posizionamento su Google (SEO)
+
+Il sito è online e collegato a Google Search Console come **proprietà dominio**
+(`sc-domain:torneriabovi.it`). Obiettivo: uscire in alto su *tornerie mantova*,
+*torneria mantova*, *lavorazioni meccaniche mantova*, *torneria bovi*,
+*torneria curtatone*.
+
+Fatto lato sito: title/description, H1 con le parole chiave, JSON-LD completo, FAQ,
+sitemap, robots.txt, tre pagine di approfondimento, link interni.
+
+**Il fattore che pesa di più non è nel codice**: è il *Profilo dell'attività su Google*
+(Google Business Profile), che alimenta il riquadro mappa mostrato per queste ricerche.
+Senza profilo verificato il sito non può entrarci. Piano operativo completo in 15 passi:
+https://claude.ai/code/artifact/bcaac5c8-17d1-48bd-88e3-4094eb0dfd3d
+
 ## Prossimi passi noti (non ancora fatti)
 
-- Attivare GitHub Pages (Settings → Pages) e inserire i record DNS su Register.it.
-- Creare l'account Web3Forms e inserire la vera access key in `index.html`
-  (cercare `WEB3FORMS_ACCESS_KEY_QUI` nel file).
+- Creare e verificare il Profilo dell'attività su Google (verifica via cartolina: 7-14 giorni).
+- In Search Console: richiedere l'indicizzazione delle 3 pagine nuove e reinviare la sitemap.
 - Migliorare/generare immagini con Nano Banana (vedi README.md) e sostituire i file in
   `images/`.
-- Pubblicare su GitHub Pages e collegare il dominio (vedi README.md).
-- Chiedere a Tiziano: orari di apertura, eventuale logo esistente, foto aggiuntive dei
-  pezzi finiti più rappresentativi.
+- Chiedere a Tiziano: eventuale logo esistente, foto aggiuntive dei pezzi finiti più
+  rappresentativi.
+- Descrizione dei pezzi della galleria (`images/pezzo-01..08.jpg`): il cliente la manda
+  (attesa per il 2026-09-13), poi vanno rinominati i file con nomi descrittivi e riscritti
+  gli `alt` (ora dicono solo "dettaglio N").

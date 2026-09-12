@@ -1,0 +1,7 @@
+# Bovi Tiziano Torneria — www.torneriabovi.it
+# Tutti i motori di ricerca possono indicizzare tutto il sito.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.torneriabovi.it/sitemap.xml

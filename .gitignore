@@ -8,3 +8,6 @@ _tmp/
 # repo, il sito usa solo le versioni ottimizzate in images/. Restano solo
 # in locale come archivio sorgente per generare nuove immagini web.
 assets/
+
+# Impostazioni locali di Claude Code (non servono online)
+.claude/
